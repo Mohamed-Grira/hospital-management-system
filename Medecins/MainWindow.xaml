@@ -1,0 +1,112 @@
+﻿<Window x:Class="Medecins.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Medecins"
+        mc:Ignorable="d"
+        Title="Medecins" Height="800" Width="900">
+    <Grid>
+        <TabControl x:Name="Medecins">
+            <TabItem Name="Medecin" Header="Medecin" Background="Gray">
+                <Grid x:Name="gMedecin" Background="AliceBlue" >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="31*"/>
+                        <ColumnDefinition Width="64*"/>
+                        <ColumnDefinition Width="16*"/>
+                        <ColumnDefinition Width="68*"/>
+                        <ColumnDefinition Width="23*"/>
+                        <ColumnDefinition Width="156*"/>
+                        <ColumnDefinition Width="179*"/>
+                        <ColumnDefinition Width="179*"/>
+                        <ColumnDefinition Width="179*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="8*"/>
+                        <RowDefinition/>
+
+                    </Grid.RowDefinitions>
+                    <Label Name="lbIDMedecin" Content="IDMedecin" VerticalAlignment="Center" Grid.ColumnSpan="5" Margin="0,0,23,0"/>
+                    <TextBox x:Name="tbIDMedecin" Grid.Column="4" Margin="4,0,4,0" VerticalAlignment="Center" Grid.ColumnSpan="2"/>
+
+                    <Label Name="lbPrenom" Content="Prénom:" Grid.Row="1" VerticalAlignment="Center" Grid.ColumnSpan="5" Margin="0,0,23,0"/>
+                    <TextBox x:Name="tbPrenom" Grid.Row="1" Grid.Column="4" Margin="4,0,4,0" VerticalAlignment="Center" Grid.ColumnSpan="2"/>
+
+                    <Label Name="Nom" Content="Nom:" Grid.Row="2" VerticalAlignment="Center" Grid.ColumnSpan="5" Margin="0,0,23,0"/>
+                    <TextBox x:Name="tbnom" Grid.Row="2" Grid.Column="4" Margin="4,0,4,0" VerticalAlignment="Center" Grid.ColumnSpan="2"/>
+
+                    <Label Name="lbSpecialite" Content="Spécialité:" Grid.Column="6" VerticalAlignment="Center" Grid.ColumnSpan="2" Margin="178,0,0,0"/>
+                    <TextBox x:Name="tbSpecialite" Grid.Column="8" Margin="4,0,4,0" VerticalAlignment="Center" />
+
+                    <Label Name="lbHopital" Content="Hopital:" Grid.Row="1" Grid.Column="6" VerticalAlignment="Center" Grid.ColumnSpan="2" Margin="178,0,0,0"/>
+                    <TextBox x:Name="tbHopital" Grid.Row="1" Grid.Column="8" Margin="4,0,4,0" VerticalAlignment="Center"/>
+
+                    <Label Name="lbNumeroContact" Content="Téléphone:" Grid.Row="2" Grid.Column="6" VerticalAlignment="Center" Grid.ColumnSpan="2" Margin="178,0,0,0"/>
+                    <TextBox x:Name="tbNumeroContact" Grid.Row="2" Grid.Column="8" Margin="4,0,4,0" VerticalAlignment="Center"/>
+
+                    <Label Name="lbSalaire" Content="Salaire:" Grid.Row="3" Grid.Column="0" VerticalAlignment="Center" Grid.ColumnSpan="5" Margin="0,0,23,0"/>
+                    <TextBox x:Name="tbSalaire" Grid.Row="3" Grid.Column="4" Margin="4,0,4,0" VerticalAlignment="Center" Grid.ColumnSpan="2"/>
+
+                    <Label Name="lbCourriel" Content="Courriel:" Grid.Row="3" Grid.Column="6" VerticalAlignment="Center" Grid.ColumnSpan="2" Margin="178,0,0,0"/>
+                    <TextBox x:Name="tbCourriel" Grid.Row="3" Grid.Column="8" Margin="4,0,4,0" VerticalAlignment="Center"/>
+
+                    <Button x:Name="btnAjouteur" Content="Ajouter" Grid.Column="4" Grid.Row="4" Margin="5,5,5,5" Click="btnAjouteur_Med" Grid.ColumnSpan="2" />
+                    <Button x:Name="btnSuprimer" Content="Supprimer" Grid.Column="6" Grid.Row="4" Margin="5,5,5,5" Click="btnsuprimer_Med"/>
+                    <Button x:Name="btnModifier" Content="Modifier" Grid.Column="7" Grid.Row="4" Margin="5,5,5,5" Click="tbnModifier_Med" />
+
+                    <DataGrid x:Name="dgMedecin" Grid.Row="4" Grid.Column="3" Grid.ColumnSpan="5" SelectionChanged="Ligne_Selectionnee" ItemsSource="{Binding}" Margin="0,54,0,0" Grid.RowSpan="2" />
+
+                    <StatusBar Name="statusBar" Grid.Row="5" Background="AliceBlue" Grid.ColumnSpan="5" Margin="0,432,23,0" Grid.RowSpan="2">
+                        <Label Name="lbMessage" Content="Messages..." Width="600" Background="AliceBlue"/>
+                    </StatusBar>
+                </Grid>
+
+            </TabItem>
+            <TabItem Name="Consultation" Header="Consulter" Background="Gray">
+                <Grid x:Name="gConsulter" Background="AliceBlue">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="8*"/>
+
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <StackPanel Orientation="Vertical">
+                        <Label Name="Recherche_par_Salaire" Content="Recherche par Salaire" VerticalAlignment="center"/>
+                        <StackPanel Orientation="Horizontal">
+                            <CheckBox x:Name="Salaire_Superieur_A" Content="Salaire supérieur à:" VerticalAlignment="Center" Checked="superieur"/>
+                            <CheckBox x:Name="Salaire_Inferieur_A" Content="Salaire inférieur à:" VerticalAlignment="Center" Checked="inferieur"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBox x:Name="ctbSalaire" Margin="2,2,2,2" MinWidth="100" />
+                            <Button x:Name="cbtConsulter" Content="Consulter..." Margin="2,2,2,2" Click="Salaire_Consulter"/>
+                        </StackPanel>
+
+                    </StackPanel>
+
+                    <StackPanel Orientation="Vertical"  Grid.Row="1" >
+                        <Label Name="Recherche_Par_Nom" Content="Recherche par nom" VerticalAlignment="Center"/>
+                        <StackPanel Orientation="Vertical" >
+                            <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                                <Label Name="lbcNom" Content="Nom" />
+                                <TextBox x:Name="ctbNom" MinWidth="100" Margin="2,2,2,2"/>
+                                <Label Name="lbcPrenom" Content="Prénom" Margin="2,2,2,2"/>
+                                <TextBox x:Name="ctbPrenom" MinWidth="100" Margin="2,2,2,2" />
+                                <Button x:Name="cbtNomPrenom" Content="Consulter..." MinWidth="100" Margin="2,2,2,2" Click="consulter_Nom_Prenom"/>
+                            </StackPanel>
+                        </StackPanel>
+                    </StackPanel>
+                    <DataGrid x:Name="grille_consulter" Grid.Row="2"/>
+                </Grid>
+
+            </TabItem>
+        </TabControl>
+    </Grid>
+</Window>
